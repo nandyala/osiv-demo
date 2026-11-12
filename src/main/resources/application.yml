@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:osivdemo
+  jpa:
+    # Recommended setting. Run with --spring.profiles.active=osiv-on to see the default behaviour.
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate.generate_statistics: true
+      hibernate.format_sql: false
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug                     # print every SQL statement
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: warn
+---
+spring:
+  config:
+    activate:
+      on-profile: osiv-on
+  jpa:
+    open-in-view: true                           # Spring Boot's default
