@@ -34,7 +34,7 @@ public class OrderController {
 
     /** FIX using @EntityGraph. */
     @GetMapping("/good/orders/{id}")
-    public OrderDto goodOrder(@PathVariable Long id) {
+    public OrderDto goodOrder(@PathVariable("id") Long id) {
         return orderService.findDto(id);
     }
 }
