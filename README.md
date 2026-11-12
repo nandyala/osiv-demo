@@ -1,6 +1,6 @@
 # OSIV Demo: Open Session in View problem and fix
 
-A minimal Spring Boot 3.5 / Java 21 app that shows why `spring.jpa.open-in-view` should be turned off for REST APIs (for example, a backend serving an Angular UI), and how to fix the code so it works without it.
+A minimal **Spring Boot 4.1** app (Spring Framework 7, Hibernate 7, Jackson 3, Java 21) that shows why `spring.jpa.open-in-view` should be turned off for REST APIs (for example, a backend serving an Angular UI), and how to fix the code so it works without it.
 
 ## The scenario
 
@@ -95,3 +95,5 @@ Avoid these "fixes", which bring the hidden queries back: `FetchType.EAGER`, `hi
 - `join fetch` on two `List` collections in one query throws `MultipleBagFetchException`. Fetch one collection, and use `@BatchSize` or a second query for the other.
 - Don't combine collection `join fetch` with pagination (Hibernate paginates in memory). For paged lists, use a DTO projection.
 - `QueryCountFilter` uses global Hibernate statistics. It's for demos only, not production.
+- OSIV still defaults to `true` in Spring Boot 4, so you still need to set it explicitly.
+- Spring Boot 4 uses modular starters: this project uses `spring-boot-starter-webmvc` (instead of `-web`), and `spring-boot-starter-webmvc-test` + `spring-boot-starter-data-jpa-test` for tests. `@AutoConfigureMockMvc` now lives in `org.springframework.boot.webmvc.test.autoconfigure`.

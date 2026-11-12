@@ -9,9 +9,6 @@ spring:
     properties:
       hibernate.generate_statistics: true
       hibernate.format_sql: false
-  h2:
-    console:
-      enabled: true
 
 logging:
   level:
